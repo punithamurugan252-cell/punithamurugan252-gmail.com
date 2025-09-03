@@ -1,0 +1,54 @@
+// Smooth Scrolling
+const links = document.querySelectorAll('a[href^="#"]');
+
+links.forEach((link) => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// Form Validation
+const form = document.querySelector('form');
+const nameInput = document.querySelector('input[type="text"]');
+const emailInput = document.querySelector('input[type="email"]');
+const messageInput = document.querySelector('textarea');
+const submitButton = document.querySelector('button[type="submit"]');
+
+submitButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (nameInput.value && emailInput.value && messageInput.value) {
+        console.log('Message sent!');
+        // Send the message (you can add your own logic here)
+    } else {
+        console.log('Please fill out all fields.');
+    }
+});
+
+// Project Filtering
+const projectGrid = document.querySelector('.project-grid');
+const filterButtons = document.querySelectorAll('.filter-button');
+
+filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const filterValue = button.getAttribute('data-filter');
+        const projects = projectGrid.children;
+        for (let i = 0; i < projects.length; i++) {
+            if (filterValue === 'all') {
+                projects[i].style.display = 'block';
+            } else if (projects[i].classList.contains(filterValue)) {
+                projects[i].style.display = 'block';
+            } else {
+                projects[i].style.display = 'none';
+            }
+        }
+    });
+});
+
+// Dark Mode Toggle
+const darkModeButton = document.querySelector('.dark-mode-button');
+
+darkModeButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
